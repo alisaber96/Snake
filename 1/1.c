@@ -1,0 +1,473 @@
+#include <mega16.h>
+#include <glcd.h>
+#include <font5x7.h>
+#include <delay.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+
+#define RIGHT   1
+#define LEFT   -1
+#define UP      2
+#define DOWN   -2
+
+unsigned char play_ground_width  = 14; // 4 to 14
+unsigned char play_ground_height = 14; // 2 to 14
+
+unsigned char snake_x_poses[256];
+unsigned char snake_y_poses[256];
+unsigned char snake_head   = 2;
+unsigned char snake_tail   = 0;
+unsigned char snake_length = 0;
+unsigned char apple_x_pos;
+unsigned char apple_y_pos;
+char          snake_last_direction = RIGHT;
+char          snake_old2_direction = RIGHT;
+
+void draw_play_ground()
+{
+    char xpos;
+    char ypos = 4 * (play_ground_height+1);
+    
+    
+    // horizontal lines
+    //for(xpos=-64; xpos<((4*(play_ground_width+2))-64); xpos++)
+    for(xpos=0; xpos<((4*(play_ground_width+2))); xpos++)
+    {   
+        // lower wall
+        glcd_setpixel(xpos, 0);
+        glcd_setpixel(xpos, 1);
+        glcd_setpixel(xpos, 2);
+        glcd_setpixel(xpos, 3);
+        
+        // upper wall
+        glcd_setpixel(xpos, ypos);
+        glcd_setpixel(xpos, ypos+1);
+        glcd_setpixel(xpos, ypos+2);
+        glcd_setpixel(xpos, ypos+3);
+    }
+    
+    //xpos = (4 * (play_ground_width+1)) - 64;
+    xpos = (4 * (play_ground_width+1));
+    // vertical lines
+    for (ypos=0; ypos <(4*(play_ground_width+2)); ypos++)
+    {
+        // left side wall
+        glcd_setpixel(64-64, ypos);
+        glcd_setpixel(64-63, ypos);
+        glcd_setpixel(64-62, ypos);
+        glcd_setpixel(64-61, ypos);   
+        
+        // right side wall
+        glcd_setpixel(xpos,   ypos);
+        glcd_setpixel(xpos+1, ypos);
+        glcd_setpixel(xpos+2, ypos);
+        glcd_setpixel(xpos+3, ypos);
+    }
+}
+
+void draw_new_snake_body(unsigned char head)
+{
+    unsigned char head_x_pos = snake_x_poses[head];
+    unsigned char head_y_pos = snake_y_poses[head];
+    //unsigned char xpos = (4 * (head_x_pos + 1)) - 64;
+    unsigned char xpos = (4 * (head_x_pos + 1));
+    unsigned char ypos = (4 * (head_y_pos + 1));
+    
+    glcd_setpixel(xpos,     ypos);
+    glcd_setpixel(xpos,     ypos+1);
+    glcd_setpixel(xpos,     ypos+2);
+    glcd_setpixel(xpos,     ypos+3);
+    
+    glcd_setpixel(xpos+1,   ypos);
+    glcd_setpixel(xpos+1,   ypos+1);
+    glcd_setpixel(xpos+1,   ypos+2);
+    glcd_setpixel(xpos+1,   ypos+3);
+    
+    glcd_setpixel(xpos+2,   ypos);
+    glcd_setpixel(xpos+2,   ypos+1);
+    glcd_setpixel(xpos+2,   ypos+2);
+    glcd_setpixel(xpos+2,   ypos+3);
+    
+    glcd_setpixel(xpos+3,   ypos);
+    glcd_setpixel(xpos+3,   ypos+1);
+    glcd_setpixel(xpos+3,   ypos+2);
+    glcd_setpixel(xpos+3,   ypos+3);
+}
+
+void clear_snake_body   (unsigned char tail)
+{
+    unsigned char tail_x_pos = snake_x_poses[tail];
+    unsigned char tail_y_pos = snake_y_poses[tail];
+    //unsigned char xpos = (4 * (tail_x_pos + 1)) - 64;
+    unsigned char xpos = (4 * (tail_x_pos + 1));
+    unsigned char ypos = (4 * (tail_y_pos + 1));
+    
+    glcd_clrpixel(xpos,     ypos);
+    glcd_clrpixel(xpos,     ypos+1);
+    glcd_clrpixel(xpos,     ypos+2);
+    glcd_clrpixel(xpos,     ypos+3);
+    
+    glcd_clrpixel(xpos+1,   ypos);
+    glcd_clrpixel(xpos+1,   ypos+1);
+    glcd_clrpixel(xpos+1,   ypos+2);
+    glcd_clrpixel(xpos+1,   ypos+3);
+    
+    glcd_clrpixel(xpos+2,   ypos);
+    glcd_clrpixel(xpos+2,   ypos+1);
+    glcd_clrpixel(xpos+2,   ypos+2);
+    glcd_clrpixel(xpos+2,   ypos+3);
+    
+    glcd_clrpixel(xpos+3,   ypos);
+    glcd_clrpixel(xpos+3,   ypos+1);
+    glcd_clrpixel(xpos+3,   ypos+2);
+    glcd_clrpixel(xpos+3,   ypos+3);
+}
+
+void draw_apple()
+{
+    //unsigned char xpos = (4 * (apple_x_pos + 1)) - 64;
+    unsigned char xpos = (4 * (apple_x_pos + 1));
+    unsigned char ypos = (4 * (apple_y_pos + 1));
+    
+    //glcd_setpixel(xpos,     ypos);
+    //glcd_setpixel(xpos,     ypos+1);
+    glcd_setpixel(xpos,     ypos+2);
+    //glcd_setpixel(xpos,     ypos+3);
+    
+    glcd_setpixel(xpos+1,   ypos);
+    glcd_setpixel(xpos+1,   ypos+1);
+    glcd_setpixel(xpos+1,   ypos+2);
+    //glcd_setpixel(xpos+1,   ypos+3);
+    
+    //glcd_setpixel(xpos+2,   ypos);
+    glcd_setpixel(xpos+2,   ypos+1);
+    glcd_setpixel(xpos+2,   ypos+2);
+    glcd_setpixel(xpos+2,   ypos+3);
+    
+    //glcd_setpixel(xpos+3,   ypos);
+    glcd_setpixel(xpos+3,   ypos+1);
+    //glcd_setpixel(xpos+3,   ypos+2);
+    //glcd_setpixel(xpos+3,   ypos+3);    
+}
+
+void respawn_new_apple()
+{           
+    unsigned int  pos;
+    unsigned char random_x_pos;
+    unsigned char random_y_pos;
+    unsigned char found = 0;
+    unsigned char i;
+    unsigned char cntr = 0;
+    random_x_pos = rand() % play_ground_width;
+    random_y_pos = rand() % play_ground_height;
+    
+    while(!found)
+    {   
+        cntr++;
+        // calculate new position for the apple
+        random_x_pos++;
+        if (random_x_pos == play_ground_width) 
+        {
+            random_x_pos = 0;
+            random_y_pos++;
+            if (random_y_pos == play_ground_height)
+                random_y_pos = 0;
+        }
+        
+        found = 1;
+        // check if the apple is outside of the snake's body
+        for (i = 0; i< snake_length; i++)
+        {
+            pos = snake_tail + i;
+            pos = pos % 256;
+            if((snake_x_poses[pos] == random_x_pos) && (snake_y_poses[pos] == random_y_pos))
+            {
+                found = 0;
+                break;
+            }       
+        }
+    }                     
+    apple_x_pos = random_x_pos;
+    apple_y_pos = random_y_pos;
+    draw_apple();
+}
+
+char snake_move(char snake_direction)
+{                    
+    unsigned int  pos;
+    unsigned char i;
+    unsigned char head_x_pos;
+    unsigned char head_y_pos;
+    unsigned char ate = 0;
+    unsigned char tmp;
+    
+    
+    //  direction correction
+    tmp = snake_last_direction + snake_direction;
+    if(tmp == 0)
+        snake_direction = snake_last_direction;
+    snake_old2_direction = snake_last_direction;
+    snake_last_direction = snake_direction;
+    
+        
+    //  Dynamics of the head
+    //head_x_pos = snake_x_poses[snake_head] + (snake_direction % 2);
+    //head_y_pos = snake_y_poses[snake_head] - (snake_direction / 2); 
+    switch (snake_direction)
+    {
+    case 0X02: 
+        head_x_pos = snake_x_poses[snake_head];
+        head_y_pos = snake_y_poses[snake_head] - 1;
+        break;
+    case 0X01:
+        head_x_pos = snake_x_poses[snake_head] + 1;
+        head_y_pos = snake_y_poses[snake_head];
+        break;
+    case 0XFE:
+        head_x_pos = snake_x_poses[snake_head];
+        head_y_pos = snake_y_poses[snake_head] + 1;
+        break;
+    case 0XFF:
+        head_x_pos = snake_x_poses[snake_head] - 1;
+        head_y_pos = snake_y_poses[snake_head];
+        break;
+    }; 
+    
+    
+    
+    snake_head++;
+    snake_x_poses[snake_head] = head_x_pos;
+    snake_y_poses[snake_head] = head_y_pos;
+    
+    //  Drawing new head for the snake
+    draw_new_snake_body(snake_head);
+    
+    //  Dynamics of the tail
+    // check if the snake ate the apple
+    if ((head_x_pos == apple_x_pos) && (head_y_pos == apple_y_pos))
+    {          
+        ate = 1;
+        snake_length++;
+        respawn_new_apple(); 
+    }
+    else             
+    {
+        clear_snake_body(snake_tail);
+        snake_tail++; 
+    }
+    
+    // check if the snake ate itself 
+    for (i = 0; i< snake_length-1; i++)
+    {
+        pos = snake_tail + i;
+        pos = pos % 256; 
+    
+        if((snake_x_poses[pos] == head_x_pos) && (snake_y_poses[pos] == head_y_pos))
+            return -1;
+        
+    }
+    
+    // check if the snake hit the wall
+    if ((head_x_pos == play_ground_width) || (head_y_pos == play_ground_height) || (head_x_pos == 0XFF) || (head_y_pos == 0XFF))
+        return -2;
+    
+    // check it the player won
+    if (snake_length == (play_ground_width * play_ground_height))
+        return 2;
+    
+    // normal return
+    return ate;
+}
+
+void lose_effect()
+{ 
+    char pos_x = 0;
+    char pos_y = 0;
+    char beg_x = -1;
+    char beg_y = -1;
+    char end_x = play_ground_width;
+    char end_y = play_ground_height;
+    unsigned char i; 
+    unsigned char dir = 0;
+    char        SS[20];
+    
+    for(i=0; i<(play_ground_width*play_ground_height); i++)
+    {
+        snake_x_poses[i] = pos_x;
+        snake_y_poses[i] = pos_y;
+        switch(dir%4)
+        {
+        case 0:
+            pos_x ++;
+            if(pos_x == end_x)
+            {
+                pos_x--;
+                pos_y++;
+                beg_y++; 
+                dir++;
+            }
+            break;
+        case 1:
+            pos_y++;
+            if(pos_y == end_y)
+            {
+                pos_y--;
+                pos_x--;
+                end_x--;
+                dir++;
+            }
+            break;
+        case 2:
+            pos_x--;
+            if(pos_x == beg_x)
+            {
+                pos_x++;
+                pos_y--;
+                end_y--;
+                dir++;
+            }
+            break;
+        case 3:
+            pos_y--;
+            if(pos_y == beg_y)
+            {
+                pos_y++;
+                pos_x++;
+                beg_x++;
+                dir++; 
+            }
+            break;
+        }
+    }
+    
+    for(i=0; i<(play_ground_width*play_ground_height); i++)
+    {
+        draw_new_snake_body(i);
+        delay_ms(10);
+    }
+    
+    
+      
+    
+    for(i=0; i<(play_ground_width*play_ground_height); i++)
+    {
+        clear_snake_body(i);
+        delay_ms(10);
+    }
+}
+
+void main(void) { 
+    int         i=0;
+    char        future_direction; 
+    int         score = 0;
+    char        move_result;
+    char        playing = 1;
+    char        SS[20];
+    //sprintf(SS,"Score :%d",Score); 
+    //glcd_moveto(64,10);   
+    //glcd_outtext(SS);
+    
+    GLCDINIT_t glcd_init_data;
+    glcd_init_data.font = font5x7;
+    glcd_init_data.readxmem = NULL;
+    glcd_init_data.writexmem = NULL;
+    glcd_init(&glcd_init_data); 
+    glcd_clear();
+    srand(123);
+    
+    DDRA  = 0X00;
+    PORTA = 0XFF;
+    
+    //  drawing the playground
+    draw_play_ground();
+    
+    while (1)
+    {
+        snake_head   = 2;
+        snake_tail   = 0;
+        snake_length = snake_head - snake_tail + 1; 
+        
+        // initializing the snake with length 3
+        for(i=0; i<300; i++)
+        {
+            snake_x_poses[i] = 0;
+            snake_y_poses[i] = 0;
+        }
+        snake_x_poses[0] = 0;
+        snake_y_poses[0] = play_ground_height/2;
+        snake_x_poses[1] = 1;
+        snake_y_poses[1] = play_ground_height/2;
+        snake_x_poses[2] = 2;
+        snake_y_poses[2] = play_ground_height/2;
+        
+        //  drawing three first pieces of the snake body
+        draw_new_snake_body(0);
+        draw_new_snake_body(1);
+        draw_new_snake_body(2);
+        
+        //  rewpawning the apple;
+        respawn_new_apple();
+        
+        //  printing the score word
+        sprintf(SS,"Score:"); 
+        glcd_moveto(80,10);   
+        glcd_outtext(SS);
+        
+        // starting the game:
+        playing = 1;
+        future_direction = RIGHT;
+        snake_last_direction = RIGHT;
+        snake_old2_direction = RIGHT;
+        while(playing == 1)
+        {
+            //  taking a direction 
+            future_direction = snake_last_direction;
+            if(PINA.0 == 0)
+                 future_direction = UP;
+            if(PINA.1 == 0)
+                 future_direction = RIGHT;
+            if(PINA.2 == 0)
+                 future_direction = DOWN;
+            if(PINA.3 == 0)
+                 future_direction = LEFT;
+            
+            
+            //  Moving the snake in the play ground
+            move_result = snake_move(future_direction);
+            
+            // check the snake status
+            switch (move_result)
+            {
+            case 0XFE:      
+                // the snake hit the wall
+                delay_ms(500); 
+                playing = 0;
+                break;
+            case 0XFF:
+                // the snake ate itself
+                delay_ms(500);  
+                playing = 0;
+                break;
+            case 0X00:
+                break;
+            case 0X01:
+                score += move_result;
+                break;
+            case 0X02:  
+                playing = 0;
+                break;
+            };
+            
+            sprintf(SS,"%d",score); 
+            glcd_moveto(90,20);   
+            glcd_outtext(SS);
+             
+            //  Waiting for a moment for the snake to rest.
+            delay_ms(500);  
+        }
+        lose_effect();
+    }
+}

@@ -1,0 +1,74 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+glcd_state                                                                        0x0160      29
+snake_x_poses                                                                     0x017D     256
+snake_y_poses                                                                     0x027D     256
+ks0108_coord                                                                      0x037D       3
+_seed                                                                             0x0380       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+play_ground_width                                                                 R5           1
+play_ground_height                                                                R4           1
+snake_head                                                                        R7           1
+snake_tail                                                                        R6           1
+snake_length                                                                      R9           1
+apple_x_pos                                                                       R8           1
+apple_y_pos                                                                       R11          1
+snake_last_direction                                                              R10          1
+snake_old2_direction                                                              R13          1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+draw_play_ground                                                                  0x0016E     90
+draw_new_snake_body                                                               0x001C8     56
+clear_snake_body                                                                  0x00200     59
+draw_apple                                                                        0x0023B     44
+respawn_new_apple                                                                 0x00267     66
+snake_move                                                                        0x002A9    136
+lose_effect                                                                       0x00331    129
+main                                                                              0x003B2    180
+ks0108_enable_G100                                                                0x00466      4
+ks0108_disable_G100                                                               0x0046A      4
+ks0108_rdbus_G100                                                                 0x0046E      7
+ks0108_busy_G100                                                                  0x00475     24
+ks0108_wrcmd_G100                                                                 0x0048D      6
+ks0108_setloc_G100                                                                0x00493     18
+ks0108_gotoxp_G100                                                                0x004A5     15
+ks0108_nextx_G100                                                                 0x004B4     21
+ks0108_wrdata_G100                                                                0x004C9      9
+ks0108_rddata_G100                                                                0x004D2      9
+ks0108_rdbyte_G100                                                                0x004DB      9
+glcd_init                                                                         0x004E4    101
+glcd_clear                                                                        0x00549     38
+glcd_putpixel                                                                     0x0056F     39
+ks0108_wrmasked_G100                                                              0x00596     59
+glcd_block                                                                        0x005D1    477
+glcd_clipx                                                                        0x007AE     21
+glcd_clipy                                                                        0x007C3     21
+glcd_setpixel                                                                     0x007D8      8
+glcd_clrpixel                                                                     0x007E0      8
+glcd_getcharw_G101                                                                0x007E8    111
+glcd_new_line_G101                                                                0x00857     20
+glcd_putchar                                                                      0x0086B     98
+glcd_outtext                                                                      0x008CD     17
+glcd_moveto                                                                       0x008DE     13
+put_buff_G103                                                                     0x008EB     64
+_print_G103                                                                       0x0092B    308
+sprintf                                                                           0x00A5F     52
+srand                                                                             0x00A93     10
+rand                                                                              0x00A9D     23
+memset                                                                            0x00AB4     16
+strlen                                                                            0x00AC4     12
+strlenf                                                                           0x00AD0     13
+glcd_getmask                                                                      0x00ADD     11
+glcd_mappixcolor1bit                                                              0x00AE8     40
+glcd_readmem                                                                      0x00B10     31
+glcd_writemem                                                                     0x00B2F     31
