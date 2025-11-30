@@ -127,8 +127,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1522220106
-Build=53
+COFFileTimeStamp=1535182881
+Build=54
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -230,7 +230,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=53
+Build=54
 [DefinedSymbols]
 Count=0
 [CompilerAdvanced]
@@ -361,7 +361,7 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 52
+L17=Build: 53
 L18=21490 line(s) compiled
 L19=No errors
 L20=1 warning(s)
@@ -388,7 +388,7 @@ Lines=38
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(5223): No EEPROM data, deleting E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\Exe\1.eep
+L4=E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(5223): No EEPROM data, deleting E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\Exe\1.eep
 L5=
 L6=ATmega16 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
@@ -403,7 +403,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1534697495
+TimeStamp=1535182886
 [BookmarksFoldedCode]
 Files=1
 F1=1.c
@@ -412,7 +412,7 @@ TimeStamp=1522220149
 Row=0
 Column=0
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=87
 BK0=-1
 BK1=-1
 BK2=-1
@@ -425,7 +425,7 @@ BK8=-1
 BK9=-1
 [HeadersList]
 Files=1
-F1=E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\1.c
+F1=E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\1.c
 [Header1]
 Files=13
 F1=C:\cvavr\inc\mega16.h

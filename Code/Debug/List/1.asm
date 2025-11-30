@@ -1,5 +1,5 @@
 
-;CodeVisionAVR C Compiler V3.14 Advanced
+;CodeVisionAVR C Compiler V3.12 Advanced
 ;(C) Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
 ;http://www.hpinfotech.com
 
@@ -2222,8 +2222,8 @@ _0x39:
 ; 0000 015C         draw_new_snake_body(i);
 	LDD  R26,Y+27
 	RCALL _draw_new_snake_body
-; 0000 015D         delay_ms(20);
-	LDI  R26,LOW(20)
+; 0000 015D         delay_ms(10);
+	LDI  R26,LOW(10)
 	LDI  R27,0
 	CALL _delay_ms
 ; 0000 015E     }
@@ -2247,8 +2247,8 @@ _0x3C:
 ; 0000 0165         clear_snake_body(i);
 	LDD  R26,Y+27
 	RCALL _clear_snake_body
-; 0000 0166         delay_ms(20);
-	LDI  R26,LOW(20)
+; 0000 0166         delay_ms(10);
+	LDI  R26,LOW(10)
 	LDI  R27,0
 	CALL _delay_ms
 ; 0000 0167     }
@@ -4955,8 +4955,8 @@ _delay_ms:
 	adiw r26,0
 	breq __delay_ms1
 __delay_ms0:
-	wdr
 	__DELAY_USW 0xFA
+	wdr
 	sbiw r26,1
 	brne __delay_ms0
 __delay_ms1:

@@ -1,18 +1,18 @@
 
-AVRASM ver. 2.1.30  E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm Tue May 27 07:34:18 2025
+AVRASM ver. 2.1.30  E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm Mon Dec 01 01:01:01 2025
 
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1088): warning: Register r5 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1089): warning: Register r4 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1090): warning: Register r7 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1091): warning: Register r6 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1092): warning: Register r9 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1093): warning: Register r8 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1094): warning: Register r11 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1095): warning: Register r10 already defined by the .DEF directive
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1096): warning: Register r13 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1088): warning: Register r5 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1089): warning: Register r4 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1090): warning: Register r7 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1091): warning: Register r6 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1092): warning: Register r9 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1093): warning: Register r8 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1094): warning: Register r11 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1095): warning: Register r10 already defined by the .DEF directive
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1096): warning: Register r13 already defined by the .DEF directive
                  
                  
-                 ;CodeVisionAVR C Compiler V3.14 Advanced
+                 ;CodeVisionAVR C Compiler V3.12 Advanced
                  ;(C) Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
                  ;http://www.hpinfotech.com
                  
@@ -1385,7 +1385,7 @@ E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(10
 00011d 0703
 00011e 1f0f
 00011f 7f3f      	.DB  0x0,0x1,0x3,0x7,0xF,0x1F,0x3F,0x7F
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1191): warning: .cseg .db misalignment - padding zero byte
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1191): warning: .cseg .db misalignment - padding zero byte
 000120 00ff      	.DB  0xFF
                  _tbl10_G103:
 000121 2710
@@ -1414,14 +1414,14 @@ E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(11
 000132 2500      	.DB  0x53,0x63,0x6F,0x72,0x65,0x3A,0x0,0x25
 000133 0064      	.DB  0x64,0x0
                  _0x2080060:
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1208): warning: .cseg .db misalignment - padding zero byte
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1208): warning: .cseg .db misalignment - padding zero byte
 000134 0001      	.DB  0x1
                  _0x2080000:
 000135 4e2d
 000136 4e41
 000137 4900
 000138 464e      	.DB  0x2D,0x4E,0x41,0x4E,0x0,0x49,0x4E,0x46
-E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(1211): warning: .cseg .db misalignment - padding zero byte
+E:\Uni\sem3\Micro Lab\Tests\GLCD\5- My_Snake\New folder (2)\Code\Debug\List\1.asm(1211): warning: .cseg .db misalignment - padding zero byte
 000139 0000      	.DB  0x0
                  
                  __GLOBAL_INI_TBL:
@@ -2438,8 +2438,8 @@ E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(12
                  ; 0000 015C         draw_new_snake_body(i);
 000393 8dab      	LDD  R26,Y+27
 000394 de33      	RCALL _draw_new_snake_body
-                 ; 0000 015D         delay_ms(20);
-000395 e1a4      	LDI  R26,LOW(20)
+                 ; 0000 015D         delay_ms(10);
+000395 e0aa      	LDI  R26,LOW(10)
 000396 e0b0      	LDI  R27,0
 000397 940e 0cb2 	CALL _delay_ms
                  ; 0000 015E     }
@@ -2463,8 +2463,8 @@ E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(12
                  ; 0000 0165         clear_snake_body(i);
 0003a4 8dab      	LDD  R26,Y+27
 0003a5 de5a      	RCALL _clear_snake_body
-                 ; 0000 0166         delay_ms(20);
-0003a6 e1a4      	LDI  R26,LOW(20)
+                 ; 0000 0166         delay_ms(10);
+0003a6 e0aa      	LDI  R26,LOW(10)
 0003a7 e0b0      	LDI  R27,0
 0003a8 940e 0cb2 	CALL _delay_ms
                  ; 0000 0167     }
@@ -5332,14 +5332,14 @@ E:\Uni\sem2\TA\MicroLab_Projects\Osciloscop\New folder (2)\1\Debug\List\1.asm(12
 000cb2 9610      	adiw r26,0
 000cb3 f039      	breq __delay_ms1
                  __delay_ms0:
-000cb4 95a8      	wdr
                 +
-000cb5 ef8a     +LDI R24 , LOW ( 0xFA )
-000cb6 e090     +LDI R25 , HIGH ( 0xFA )
+000cb4 ef8a     +LDI R24 , LOW ( 0xFA )
+000cb5 e090     +LDI R25 , HIGH ( 0xFA )
                 +__DELAY_USW_LOOP :
-000cb7 9701     +SBIW R24 , 1
-000cb8 f7f1     +BRNE __DELAY_USW_LOOP
+000cb6 9701     +SBIW R24 , 1
+000cb7 f7f1     +BRNE __DELAY_USW_LOOP
                  	__DELAY_USW 0xFA
+000cb8 95a8      	wdr
 000cb9 9711      	sbiw r26,1
 000cba f7c9      	brne __delay_ms0
                  __delay_ms1:
